@@ -1,0 +1,1 @@
+export { PriceModel } from "./prices";
