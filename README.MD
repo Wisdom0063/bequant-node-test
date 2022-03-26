@@ -41,7 +41,7 @@ To run the application
 The project (a.k.a. project directory) has a particular directory structure. A representative project is shown below:
 
 
-.
+```
 ├── BEQUANT-NODE-TEST
 ├── src
 │   └── config
@@ -64,6 +64,7 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 ├── package.json
 └── README.md
 └── tsconfig.json
+```
 
 
 ## packages
