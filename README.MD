@@ -33,7 +33,7 @@ To run the application
 
 
 
-## Running the application docker
+## Running the application using docker
 
 To run the application using docker
 
