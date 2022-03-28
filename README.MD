@@ -67,6 +67,7 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 │   └── models
 │   └── routes
 │   └── services
+│   └── tests
 │   └── websocket
 │   └── app.ts
 │   └── index.ts
