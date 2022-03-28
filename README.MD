@@ -1,4 +1,4 @@
-# BEQUANT TEST PRICE SERVICE
+# BEQUANT NODE TEST
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSpring-Boot-Framework%2FSpring-Boot-Application-Template.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSpring-Boot-Framework%2FSpring-Boot-Application-Template?ref=badge_shield)
 
 This is the Bequant test price service API code
