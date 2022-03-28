@@ -1,7 +1,6 @@
 
 
 export {connect as connectDb, disconnect as disconnectDb} from "../lib"
-const copyEnvs = () => Object.assign({}, process.env)
 export const comparePriceResponse = {
     "RAW": {
         "BTC": {

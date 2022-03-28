@@ -6,9 +6,10 @@
  */
 import  convict from "convict"
 import * as cron from "cron-validator"
+import { loadEenv } from "../lib"
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development'
 
-if (process.env.NODE_ENV === 'development') require('dotenv').config()
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') loadEenv()
 
 
 const config = convict({

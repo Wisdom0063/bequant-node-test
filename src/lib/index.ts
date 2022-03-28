@@ -1,5 +1,6 @@
 'use strict'
 import express, {Express} from "express"
+import dotenv from "dotenv"
 import mongoose from 'mongoose'
 export {request} from "./request"
 
@@ -76,6 +77,14 @@ export class CustomError extends Error {
 
   export function throwError(message:string, status:number){
     throw new CustomError(message, status)
+  }
+
+
+  export  function loadEenv () {
+
+    dotenv.config()
+
+      
   }
 
 

@@ -18,9 +18,6 @@ export async function getPricesController(req:Request, res:Response, next:NextFu
         return res.json(pricesOutputDTO)
         
     } catch (error) {
-
-        (error as any).status = 400
-
         return next(error)
 
         

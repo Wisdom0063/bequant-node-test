@@ -1,6 +1,6 @@
 import axios from "axios"
 import request from "supertest"
-require('dotenv').config()
+
 import {comparePriceResponse, connectDb, disconnectDb, priceResponse} from "."
 
 

@@ -46,7 +46,7 @@ const save = async (payload: PriceInputDTO | PriceInputDTO[]):Promise<IPriceMode
     
       }
       const item = new Model(payload)
-      let doc = await item.save()
+      const doc = await item.save()
 
       return doc.toObject()
     
