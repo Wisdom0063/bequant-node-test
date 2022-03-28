@@ -82,7 +82,7 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 ```
 
 
-## packages
+## Modules
 
 - `models` — to hold our database entities;
 - `config` — reads the application configuration values from the .env;
