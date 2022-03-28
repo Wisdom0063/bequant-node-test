@@ -1,5 +1,7 @@
 
-import { getPricesController } from "./controller"
 import { createApp } from "./lib"
+import { errorHandler } from "./middleware"
+import { priceRouter } from "./routes"
 export const app = createApp()
-app.get("/prices", getPricesController)
+app.use("/prices", priceRouter)
+app.use(errorHandler)

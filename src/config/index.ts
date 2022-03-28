@@ -5,6 +5,7 @@
  * @author Wisdom Kwarteng
  */
 import  convict from "convict"
+import * as cron from "cron-validator"
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development'
 
 if (process.env.NODE_ENV === 'development') require('dotenv').config()
@@ -29,6 +30,13 @@ const config = convict({
       default: process.env.DB_URL as string,
     },
 
+    TEST_DB_URL: {
+        doc: 'Mongodb  test connection url',
+        format: String,
+        env: 'TEST_DB_URL',
+        default: process.env.TEST_DB_URL as string,
+      },
+
     CURRENCIES:{
         doc: 'Allowed currencies',
         format: String,
@@ -38,11 +46,15 @@ const config = convict({
 
       SCHEDULER_INTERVAL:{
         doc: 'Time interval scheduler should run to save prices in database',
-        format: String,
+        format: function( val){
+                if (!cron.isValidCron(val)) {
+                    throw new Error('must be a a valid cron expression')
+                }
+        },
         env: 'SCHEDULER_INTERVAL',
         default: "*/3 * * * *",
       }
 
 })
-config.validate()
+config.validate({allowed: 'strict'});
 export default config

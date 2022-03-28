@@ -8,6 +8,10 @@ services:
       dockerfile: Dockerfile.dev
     env_file:
       - .env
+    environment:
+      - DB_URL=mongodb://mongo:27017/cryptocompare
+      - TEST_DB_URL=mongodb://mongo:27017/cryptocomparetest
+
     ports:
       - "${PORT}:${PORT}"
     links:

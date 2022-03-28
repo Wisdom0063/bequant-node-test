@@ -1,15 +1,17 @@
 version: "3.7"
 services:
-  app:
-    container_name: app
+  test:
+    container_name: test
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.test
     env_file:
       - .env
-    ports:
-      - "${PORT}:${PORT}"
+    environment:
+      - DB_URL=mongodb://mongo:27017/cryptocompare
+      - TEST_DB_URL=mongodb://mongo:27017/cryptocomparetest
+
     links:
       - mongo
     depends_on:

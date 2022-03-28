@@ -3,16 +3,25 @@ import request from "supertest"
 require('dotenv').config()
 import {comparePriceResponse, connectDb, disconnectDb, priceResponse} from "."
 
+
 import {app} from "../app"
 import config from "../config"
 
 jest.mock("axios");
+jest.mock("../services/getPrice", ()=>{
+    return {
+        __esModule: true,
+        ...jest.requireActual("../services/getPrice"),
+        getPricesFromDB:() => console.log("yes calling")
+
+
+    }
+})
 
 
 describe("Price Service API", ()=>{
     beforeAll( async ()=>{
-        console.log(config.get("DB_URL"))
-    await connectDb(config.get("DB_URL"))
+    await connectDb(config.get("TEST_DB_URL"))
 
     })
 
@@ -32,8 +41,8 @@ describe("Price Service API", ()=>{
     })
 
 
-    it("should request for a price", async ()=>{
-        (axios as any).get.mockRejectedValue(new Error('Async error'))
+    it("should get price info from db if axios request fails", async ()=>{
+        (axios as any).get.mockRejectedValue(new Error('API returned an error'))
         const res = await request(app).get("/prices?fsyms=BTC&tsyms=USD,EUR").send()
         expect(res.status).toBe(200)
         expect(axios.get).toHaveBeenCalledWith("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD,EUR")

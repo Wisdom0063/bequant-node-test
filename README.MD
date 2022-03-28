@@ -27,13 +27,27 @@ To run the application
 * Run the command `npm install`
 * Create a file and name it .env in the root directory of the application
 * copy the content of the .env.sample file and update it with the port you want the application to run on and the mongodb database URL to connect to
+* Run the command `npm run test` to run the e2e test
 * Run the command `npm run dev`
+
+
+
+
+## Running the application docker
+
+To run the application using docker
+
+* cd into the root directory of the application
+* Create a file and name it .env in the root directory of the application
+* copy the content of the .env.sample file and update it with the port you want the application to run on and the mongodb database URL to connect to
+* Run the command `docker compose -f docker-compose.test.yml up --exit-code-from test` to run the test
+* Run the command `docker compose -f docker-compose.dev.yml up`
 
 
 
 ## Documentation
 
-* [API documentation](https://documenter.getpostman.com/view/10234227/SzRyy9K5?version=latest) - online, with code auto-generated snippets in cURL, jQuery, Java, Swift, Objective-C, Shell Ruby,Python Requests, Node, PHP and Go programming languages
+* [API documentation](https://documenter.getpostman.com/view/6138446/UVyn3K1J) - online, with code auto-generated snippets in cURL, jQuery, Java, Swift, Objective-C, Shell Ruby,Python Requests, Node, PHP and Go programming languages
 
 
 ## Files and Directories
@@ -71,7 +85,7 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 
 - `models` — to hold our database entities;
 - `config` — reads the application configuration values from the .env;
-- `middlewares` — It contains all the guards on the API request handlers. Eg is the authentication middlware;
+- `middlewares` — It contains all the guards on the API request handlers. Eg is the error handling middlware;
 - `services` — to hold our business logic;
 - `routes` — It contains the API request handlers;
 - `lib` — It contains all the utility functions used in the project

@@ -62,11 +62,13 @@ export class PriceMapper{
             }))
         }
 
-    static toOutputDTO(priceInfo:IPriceModel[], fsms:string[], tsms:string[]):PriceOutputDTO{
-       return fsms.reduce((acc:any, curr)=>{
-            const fsmsPair = tsms.reduce((acc2:any, curr2)=>{
-                const info = priceInfo.find(val=>val.fromSymbol === curr && val.toSymbol === curr2 )
-                acc2[curr2] =info ? {
+    static toOutputDTO(priceInfo:IPriceModel[], fsyms:string[], tsyms:string[]):PriceOutputDTO{
+       return fsyms.reduce((fsymsAcc:any, fsym)=>{
+           // Get all pairs for fsym
+            const fsymsPair = tsyms.reduce((tsymsAcc:any, tsym)=>{
+                // Get price information pair fsym, tsym
+                const info = priceInfo.find(val=>val.fromSymbol === fsym && val.toSymbol === tsym )
+                tsymsAcc[tsym] =info ? {
                     type: info.type,
                     market:info.market,
                     fromSymbol:info.fromSymbol,
@@ -89,11 +91,11 @@ export class PriceMapper{
                     lowHour:info.lowHour
                     
                 }:{}
-                return acc2
+                return tsymsAcc
             }, {})
 
-        acc[curr] = fsmsPair
-        return acc
+            fsymsAcc[fsym] = fsymsPair
+        return fsymsAcc
 
         },{})
     }
