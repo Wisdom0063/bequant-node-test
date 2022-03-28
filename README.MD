@@ -85,7 +85,7 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 ## Modules
 
 - `models` — to hold our database entities;
-- `config` — reads the application configuration values from the .env;
+- `config` — handles the application configuration values;
 - `middlewares` — It contains all the guards on the API request handlers. Eg is the error handling middlware;
 - `services` — to hold our business logic;
 - `routes` — It contains the API request handlers;

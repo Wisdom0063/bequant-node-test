@@ -51,5 +51,19 @@ describe("Price Service API", ()=>{
     })
 
 
+    it("should return error for not allowed curreny pair (GHS)", async ()=>{
+        (axios as any).get.mockResolvedValueOnce({data:comparePriceResponse});
+        const res = await request(app).get("/prices?fsyms=BTC&tsyms=USD,GHS").send()
+        expect(res.status).toBe(400)
+        expect(axios.get).not.toHaveBeenCalledWith("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD,GHS")
+        expect(res.body).toEqual({
+            "error": {
+                "message": "Currency GHS not allowed"
+            }
+        })
+    
+    })
+
+
 
 })
