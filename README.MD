@@ -26,7 +26,7 @@ To run the application
 * cd into the root directory of the application
 * Run the command `npm install`
 * Create a file and name it .env in the root directory of the application
-* copy the content of the .env.sample file and update it with the port you want the application to run on and the mongodb database URL to connect to
+* copy the content of the .env.sample file and update the configuration values
 * Run the command `npm run test` to run the e2e test
 * Run the command `npm run dev`
 
@@ -39,7 +39,7 @@ To run the application using docker
 
 * cd into the root directory of the application
 * Create a file and name it .env in the root directory of the application
-* copy the content of the .env.sample file and update it with the port you want the application to run on and the mongodb database URL to connect to
+* copy the content of the .env.sample file and update the configuration values
 * Run the command `docker compose -f docker-compose.test.yml up --exit-code-from test` to run the test
 * Run the command `docker compose -f docker-compose.dev.yml up`
 
