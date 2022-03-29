@@ -1,5 +1,6 @@
 import { Agenda } from "agenda"
 import config from "../config";
+import { PriceMapper } from "../dto";
 import { convertSymsToArray } from "../lib";
 import { getAndSavePrices } from "../services";
 import {socketHandler, SOCKET_EVENTS} from "../websocket"
@@ -23,8 +24,10 @@ const currencyArray = convertSymsToArray(config.get("CURRENCIES"))
 // Get price information for all acceptable currency pairs and save it in the db
 const prices = await  getAndSavePrices(currencyArray, currencyArray)
 // Send price information to all clients that have subscribed to the prices events
-socketHandler.emit({event:SOCKET_EVENTS.PRICES, id:SOCKET_EVENTS.PRICES, args:prices})
-console.log("Prices obtained, saved and send to all clients that has subscribed to receive price information")
+
+const priceOutputDTO = PriceMapper.toOutputDTO(prices,currencyArray, currencyArray )
+socketHandler.emit({event:SOCKET_EVENTS.PRICES, id:SOCKET_EVENTS.PRICES, args:priceOutputDTO})
+console.log("Prices obtained, saved and send to all clients that has subscribed to receive price information", priceOutputDTO)
     
 
 })
