@@ -34,7 +34,6 @@ console.log("Prices obtained, saved and send to all clients that has subscribed 
 })
 
 jobQueue.on('ready', () => {
-
     jobQueue.start();
     jobQueue.every(config.get("SCHEDULER_INTERVAL"), JOB_TYPES.GET_PRICES_AND_SAVE)
 
