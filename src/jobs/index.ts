@@ -5,6 +5,7 @@ import { convertSymsToArray } from "../lib";
 import { getAndSavePrices } from "../services";
 import {socketHandler, SOCKET_EVENTS} from "../websocket"
 
+
 export enum JOB_TYPES {
     GET_PRICES_AND_SAVE = "get-prices-and-save"
 }
@@ -27,12 +28,13 @@ const prices = await  getAndSavePrices(currencyArray, currencyArray)
 
 const priceOutputDTO = PriceMapper.toOutputDTO(prices,currencyArray, currencyArray )
 socketHandler.emit({event:SOCKET_EVENTS.PRICES, id:SOCKET_EVENTS.PRICES, args:priceOutputDTO})
-console.log("Prices obtained, saved and send to all clients that has subscribed to receive price information", priceOutputDTO)
+console.log("Prices obtained, saved and send to all clients that has subscribed to receive price information")
     
 
 })
 
 jobQueue.on('ready', () => {
+
     jobQueue.start();
     jobQueue.every(config.get("SCHEDULER_INTERVAL"), JOB_TYPES.GET_PRICES_AND_SAVE)
 
